@@ -1,4 +1,4 @@
-#Jigsaw Puzzle Clone
+##Jigsaw Puzzle Clone
 This is a worked example for helping highschool students to learn code. The example attempts to mimic a jigsaw puzzle and is made with Javascript and HTML canvas.
 
 The image is borrowed from:
