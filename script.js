@@ -44,31 +44,33 @@ let rows = 4;
 let columns = 4;
 let pieces = [];
 
-//generate the piece objects at random positions
-for(let rowNumber = 0; rowNumber < rows; rowNumber++) {
-    for (let columnNumber = 0; columnNumber < columns; columnNumber++) {
-        pieces.push(new Piece(
-            Math.random()*canvas.width*0.8,
-            Math.random()*canvas.height*0.8,
-            rowNumber,
-            columnNumber)
-        );
+image.onload = function () {
+    //generate the piece objects at random positions
+    for(let rowNumber = 0; rowNumber < rows; rowNumber++) {
+        for (let columnNumber = 0; columnNumber < columns; columnNumber++) {
+            pieces.push(new Piece(
+                Math.random()*canvas.width*0.8,
+                Math.random()*canvas.height*0.8,
+                rowNumber,
+                columnNumber)
+            );
+        }
     }
+
+    // draw the pieces 60 times per second
+    setInterval(function() {
+
+        context.clearRect(0,0,canvas.width,canvas.height);
+        for(let piece of pieces)
+            piece.draw();
+
+        if(clickedPiece != undefined) {
+            clickedPiece.xPosition = mousePosition.x;
+            clickedPiece.yPosition = mousePosition.y;
+        }
+
+    }, 1000/60);
 }
-
-// draw the pieces 60 times per second
-setInterval(function() {
-
-    context.clearRect(0,0,canvas.width,canvas.height);
-    for(let piece of pieces)
-        piece.draw();
-
-    if(clickedPiece != undefined) {
-        clickedPiece.xPosition = mousePosition.x;
-        clickedPiece.yPosition = mousePosition.y;
-    }
-
-}, 1000/60);
 
 // update the mouse position
 canvas.addEventListener("mousemove", function (event) {
